@@ -10,6 +10,7 @@
 namespace Worksection;
 use Countable;
 use Iterator;
+use Exception;
 
 class vCard implements Countable, Iterator
 {
@@ -68,10 +69,11 @@ class vCard implements Countable, Iterator
 	 * @param string Path to file, optional.
 	 * @param string Raw data, optional.
 	 * @param array Additional options, optional. Currently supported options:
-	 *	bool Collapse: If true, elements that can have multiple values but have only a single value are returned as that value instead of an array
-	 *		If false, an array is returned even if it has only one value.
+	 *    bool Collapse: If true, elements that can have multiple values but have only a single value are returned as that value instead of an array
+	 *        If false, an array is returned even if it has only one value.
 	 *
 	 * One of these parameters must be provided, otherwise an exception is thrown.
+	 * @throws Exception
 	 */
 	public function __construct($Path = false, $RawData = false, array $Options = null)
 	{
@@ -354,6 +356,7 @@ class vCard implements Countable, Iterator
 	 * @param string Target path where the file should be saved, including the filename
 	 *
 	 * @return bool Operation status
+	 * @throws Exception
 	 */
 	public function SaveFile($Key, $Index = 0, $TargetPath = '')
 	{
